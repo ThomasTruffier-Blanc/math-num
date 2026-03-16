@@ -33,7 +33,6 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
         }
         
         /* Styles pour les flashcards */
@@ -56,306 +55,311 @@
             transform: rotateY(180deg);
         }
 
-        /* Custom scrollbar */
+        /* Custom scrollbar - Thème sombre */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+            background: #0f172a; /* slate-900 */
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
+            background: #334155; /* slate-700 */
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+            background: #475569; /* slate-600 */
         }
         
         .math-box {
             overflow-x: auto;
             padding-bottom: 5px;
         }
+        
+        /* Force SVG MathJax color to inherit */
+        mjx-container svg {
+            color: currentColor;
+        }
     </style>
 </head>
-<body class="text-slate-800 antialiased flex h-screen overflow-hidden">
+<body class="text-slate-300 antialiased flex h-screen overflow-hidden bg-slate-950">
 
     <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="lg:hidden fixed top-4 right-4 z-50 bg-indigo-600 text-white p-2 rounded-md shadow-lg">
+    <button id="mobile-menu-btn" class="lg:hidden fixed top-4 right-4 z-50 bg-indigo-600 text-white p-2 rounded-md shadow-lg border border-indigo-500">
         <i class="fas fa-bars"></i>
     </button>
 
     <!-- Sidebar Navigation -->
-    <nav id="sidebar" class="bg-indigo-900 text-white w-72 flex-shrink-0 h-full overflow-y-auto transition-transform duration-300 transform -translate-x-full lg:translate-x-0 fixed lg:static z-40 shadow-2xl">
+    <nav id="sidebar" class="bg-slate-900 border-r border-slate-800 text-slate-300 w-72 flex-shrink-0 h-full overflow-y-auto transition-transform duration-300 transform -translate-x-full lg:translate-x-0 fixed lg:static z-40 shadow-2xl">
         <div class="p-6">
-            <h1 class="text-2xl font-bold tracking-tight mb-2 text-indigo-100">R206 Numérisation</h1>
-            <p class="text-indigo-300 text-sm mb-6 border-b border-indigo-700 pb-4">Méga Fiche de Révision</p>
+            <h1 class="text-2xl font-bold tracking-tight mb-2 text-indigo-400">R206 Numérisation</h1>
+            <p class="text-slate-500 text-sm mb-6 border-b border-slate-800 pb-4">Méga Fiche de Révision</p>
             
             <ul class="space-y-2 text-sm font-medium">
-                <li><a href="#intro" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-satellite-dish w-6"></i> 1. Pourquoi numériser ?</a></li>
-                <li><a href="#spectre" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-wave-square w-6"></i> 2. Spectres & Math</a></li>
-                <li><a href="#echantillonnage" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-ruler-horizontal w-6"></i> 3. Échantillonnage & Shannon</a></li>
-                <li><a href="#quantification" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-stairs w-6"></i> 4. Quantification & RSB</a></li>
-                <li><a href="#chaine" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-link w-6"></i> 5. La Chaîne CAN/CNA</a></li>
-                <li><a href="#codage" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-binary w-6"></i> 6. Codage & Débit</a></li>
-                <li><a href="#codecs" class="nav-link block py-2 px-3 rounded hover:bg-indigo-800 transition"><i class="fas fa-compress-arrows-alt w-6"></i> 7. Codecs & Standards</a></li>
-                <li><a href="#formules" class="nav-link block py-2 px-3 rounded bg-indigo-700 mt-4 text-white"><i class="fas fa-calculator w-6"></i> Les 10 Formules</a></li>
-                <li><a href="#pieges" class="nav-link block py-2 px-3 rounded text-red-300 hover:bg-indigo-800 transition"><i class="fas fa-skull-crossbones w-6"></i> Les Pièges</a></li>
-                <li><a href="#flashcards" class="nav-link block py-2 px-3 rounded text-green-300 hover:bg-indigo-800 transition"><i class="fas fa-clone w-6"></i> Flashcards (20)</a></li>
+                <li><a href="#intro" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-satellite-dish w-6 text-slate-500"></i> 1. Pourquoi numériser ?</a></li>
+                <li><a href="#spectre" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-wave-square w-6 text-slate-500"></i> 2. Spectres & Math</a></li>
+                <li><a href="#echantillonnage" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-ruler-horizontal w-6 text-slate-500"></i> 3. Échantillonnage & Shannon</a></li>
+                <li><a href="#quantification" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-stairs w-6 text-slate-500"></i> 4. Quantification & RSB</a></li>
+                <li><a href="#chaine" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-link w-6 text-slate-500"></i> 5. La Chaîne CAN/CNA</a></li>
+                <li><a href="#codage" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-binary w-6 text-slate-500"></i> 6. Codage & Débit</a></li>
+                <li><a href="#codecs" class="nav-link block py-2 px-3 rounded hover:bg-slate-800 hover:text-indigo-300 transition"><i class="fas fa-compress-arrows-alt w-6 text-slate-500"></i> 7. Codecs & Standards</a></li>
+                <li><a href="#formules" class="nav-link block py-2 px-3 rounded bg-indigo-900/50 border border-indigo-800/50 mt-4 text-indigo-200 hover:bg-indigo-900 transition"><i class="fas fa-calculator w-6"></i> Les 10 Formules</a></li>
+                <li><a href="#pieges" class="nav-link block py-2 px-3 rounded text-red-400 hover:bg-slate-800 transition"><i class="fas fa-skull-crossbones w-6"></i> Les Pièges</a></li>
+                <li><a href="#flashcards" class="nav-link block py-2 px-3 rounded text-emerald-400 hover:bg-slate-800 transition"><i class="fas fa-clone w-6"></i> Flashcards (20)</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-1 h-full overflow-y-auto bg-slate-50 relative" id="main-content">
+    <main class="flex-1 h-full overflow-y-auto relative" id="main-content">
         <div class="max-w-4xl mx-auto p-6 lg:p-12 pb-32">
             
             <!-- Header -->
             <header class="mb-10 text-center">
-                <span class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-800 text-sm font-semibold mb-3">Devoir de demain !</span>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Fiche de Révision Ultime</h1>
-                <p class="text-lg text-slate-600">Basée sur le cours R206 et les TD de numérisation du signal.</p>
+                <span class="inline-block py-1 px-3 rounded-full bg-indigo-900/50 border border-indigo-700 text-indigo-300 text-sm font-semibold mb-3">Devoir de demain !</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-100 mb-4 tracking-tight">Fiche de Révision Ultime</h1>
+                <p class="text-lg text-slate-400">Basée sur le cours R206 et les TD de numérisation du signal.</p>
             </header>
 
             <!-- Section 1 -->
-            <section id="intro" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-satellite-dish mr-2"></i>1. Pourquoi numériser un signal ?</h2>
+            <section id="intro" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-satellite-dish mr-2 text-indigo-500"></i>1. Pourquoi numériser un signal ?</h2>
                 <div class="space-y-4">
                     <p>Un signal <strong>analogique</strong> varie continuellement dans le temps (ex : son, tension, voix). La numérisation permet de transformer ce signal en une suite de nombres binaires traitables par un ordinateur ou transmissibles sur un réseau (Numéris, IP, etc.).</p>
                     <p class="text-sm text-slate-500 italic">Note : L'échantillonnage s'applique aussi aux images (spatial) avec des "lignes/colonnes sur 4" pour les niveaux de gris par exemple.</p>
 
-                    <h3 class="font-semibold text-lg text-slate-800 mt-4">La Chaîne Complète (vue globale)</h3>
-                    <div class="bg-indigo-50 p-4 rounded-lg flex flex-wrap gap-2 items-center justify-center font-mono text-sm text-indigo-900 text-center">
-                        <span class="bg-white px-2 py-1 rounded shadow-sm border border-indigo-100">Capteur</span>
-                        <i class="fas fa-arrow-right text-indigo-400"></i>
-                        <span class="bg-white px-2 py-1 rounded shadow-sm border border-indigo-100">Amplificateur</span>
-                        <i class="fas fa-arrow-right text-indigo-400"></i>
-                        <span class="bg-white px-2 py-1 rounded shadow-sm border-indigo-300 border-2 font-bold">CAN</span>
-                        <i class="fas fa-arrow-right text-indigo-400"></i>
-                        <span class="bg-white px-2 py-1 rounded shadow-sm border border-indigo-100">Traitement / Trans</span>
-                        <i class="fas fa-arrow-right text-indigo-400"></i>
-                        <span class="bg-white px-2 py-1 rounded shadow-sm border-indigo-300 border-2 font-bold">CNA</span>
-                        <i class="fas fa-arrow-right text-indigo-400"></i>
-                        <span class="bg-white px-2 py-1 rounded shadow-sm border border-indigo-100">Sortie Analogique</span>
+                    <h3 class="font-semibold text-lg text-slate-200 mt-4">La Chaîne Complète (vue globale)</h3>
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-wrap gap-2 items-center justify-center font-mono text-sm text-slate-300 text-center shadow-inner">
+                        <span class="bg-slate-800 px-2 py-1 rounded shadow-sm border border-slate-700">Capteur</span>
+                        <i class="fas fa-arrow-right text-slate-600"></i>
+                        <span class="bg-slate-800 px-2 py-1 rounded shadow-sm border border-slate-700">Amplificateur</span>
+                        <i class="fas fa-arrow-right text-slate-600"></i>
+                        <span class="bg-slate-800 text-indigo-300 px-2 py-1 rounded shadow-sm border-indigo-500/50 border-2 font-bold">CAN</span>
+                        <i class="fas fa-arrow-right text-slate-600"></i>
+                        <span class="bg-slate-800 px-2 py-1 rounded shadow-sm border border-slate-700">Traitement / Trans</span>
+                        <i class="fas fa-arrow-right text-slate-600"></i>
+                        <span class="bg-slate-800 text-indigo-300 px-2 py-1 rounded shadow-sm border-indigo-500/50 border-2 font-bold">CNA</span>
+                        <i class="fas fa-arrow-right text-slate-600"></i>
+                        <span class="bg-slate-800 px-2 py-1 rounded shadow-sm border border-slate-700">Sortie Analogique</span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                        <div class="border rounded p-4 border-l-4 border-l-blue-400 bg-blue-50/50">
-                            <h4 class="font-bold mb-1">Analogique</h4>
-                            <p class="text-sm text-slate-600">Temps continu + Amplitude continue ($x(t)$)</p>
+                        <div class="border border-slate-700 rounded p-4 border-l-4 border-l-blue-500 bg-blue-950/20">
+                            <h4 class="font-bold mb-1 text-slate-200">Analogique</h4>
+                            <p class="text-sm text-slate-400">Temps continu + Amplitude continue ($x(t)$)</p>
                         </div>
-                        <div class="border rounded p-4 border-l-4 border-l-green-400 bg-green-50/50">
-                            <h4 class="font-bold mb-1">Numérique</h4>
-                            <p class="text-sm text-slate-600">Temps discret + Amplitude discrète ($x[n]$)</p>
+                        <div class="border border-slate-700 rounded p-4 border-l-4 border-l-emerald-500 bg-emerald-950/20">
+                            <h4 class="font-bold mb-1 text-slate-200">Numérique</h4>
+                            <p class="text-sm text-slate-400">Temps discret + Amplitude discrète ($x[n]$)</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Section 2 -->
-            <section id="spectre" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-wave-square mr-2"></i>2. Représentation Spectrale & Outils Mathématiques</h2>
+            <section id="spectre" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-wave-square mr-2 text-indigo-500"></i>2. Représentation Spectrale & Outils Mathématiques</h2>
                 
                 <p class="mb-4">Un signal peut être étudié dans le domaine <strong>temporel</strong> $x(t)$ ou <strong>fréquentiel</strong> $X(f)$ (son spectre).</p>
                 
-                <ul class="list-disc pl-5 space-y-2 mb-6">
-                    <li><strong>Sinusoïde</strong> $x(t) = A\sin(2\pi f t)$ : Le spectre est un pic à la fréquence $f$.</li>
-                    <li><strong>Somme de sinusoïdes</strong> : Pics à $f_1, f_2$, etc.</li>
-                    <li><strong>Signal carré</strong> : Contient une fondamentale $F_0$ et des harmoniques impaires ($3F_0, 5F_0, 7F_0...$).</li>
+                <ul class="list-disc pl-5 space-y-2 mb-6 text-slate-400">
+                    <li><strong class="text-slate-200">Sinusoïde</strong> $x(t) = A\sin(2\pi f t)$ : Le spectre est un pic à la fréquence $f$.</li>
+                    <li><strong class="text-slate-200">Somme de sinusoïdes</strong> : Pics à $f_1, f_2$, etc.</li>
+                    <li><strong class="text-slate-200">Signal carré</strong> : Contient une fondamentale $F_0$ et des harmoniques impaires ($3F_0, 5F_0, 7F_0...$).</li>
                 </ul>
 
-                <div class="bg-amber-50 border border-amber-200 rounded-lg p-5 mb-6">
-                    <h3 class="font-bold text-amber-800 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i>Le Produit de deux cosinus (Super Important pour l'Exo 1 du TD !)</h3>
-                    <p class="mb-2 text-sm">Quand on multiplie deux signaux (comme lors de l'échantillonnage), on crée de nouvelles fréquences. La formule magique :</p>
-                    <div class="math-box text-center text-lg my-3 bg-white p-3 rounded shadow-sm border border-amber-100">
+                <div class="bg-amber-950/30 border border-amber-900/50 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-amber-500 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i>Le Produit de deux cosinus (Super Important pour l'Exo 1 du TD !)</h3>
+                    <p class="mb-2 text-sm text-slate-300">Quand on multiplie deux signaux (comme lors de l'échantillonnage), on crée de nouvelles fréquences. La formule magique :</p>
+                    <div class="math-box text-center text-lg my-3 bg-slate-950 p-3 rounded shadow-inner border border-slate-800 text-slate-200">
                         $$\cos(a) \cdot \cos(b) = \frac{1}{2}[\cos(a+b) + \cos(a-b)]$$
                     </div>
-                    <p class="text-sm"><strong>Exemple du TD :</strong> $x(t) = 3\cos(2\pi \cdot 2000t)$ et $y(t) = 2\cos(2\pi \cdot 5000t)$<br>
-                    Produit $m(t) = x(t)y(t) \Rightarrow$ Le spectre contiendra des pics à <strong>7000 Hz</strong> $(5000+2000)$ et <strong>3000 Hz</strong> $(5000-2000)$.</p>
+                    <p class="text-sm text-slate-300"><strong>Exemple du TD :</strong> $x(t) = 3\cos(2\pi \cdot 2000t)$ et $y(t) = 2\cos(2\pi \cdot 5000t)$<br>
+                    Produit $m(t) = x(t)y(t) \Rightarrow$ Le spectre contiendra des pics à <strong class="text-amber-400">7000 Hz</strong> $(5000+2000)$ et <strong class="text-amber-400">3000 Hz</strong> $(5000-2000)$.</p>
                 </div>
 
-                <h3 class="font-semibold text-lg text-slate-800">Le peigne de Dirac</h3>
-                <p class="text-sm text-slate-600 mb-2">C’est l'outil mathématique pour modéliser l'échantillonnage. C'est une suite d’impulsions espacées de $T$.</p>
-                <div class="math-box text-center bg-slate-50 p-2 rounded">
+                <h3 class="font-semibold text-lg text-slate-200">Le peigne de Dirac</h3>
+                <p class="text-sm text-slate-400 mb-2">C’est l'outil mathématique pour modéliser l'échantillonnage. C'est une suite d’impulsions espacées de $T$.</p>
+                <div class="math-box text-center bg-slate-950 border border-slate-800 p-2 rounded text-slate-200">
                     $$\psi_T(t) = \sum_{n=-\infty}^{+\infty} \delta(t - nT)$$
                 </div>
             </section>
 
             <!-- Section 3 -->
-            <section id="echantillonnage" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-ruler-horizontal mr-2"></i>3. Échantillonnage & Théorème de Shannon</h2>
+            <section id="echantillonnage" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-ruler-horizontal mr-2 text-indigo-500"></i>3. Échantillonnage & Théorème de Shannon</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <h3 class="font-bold text-slate-800 mb-2">Principe</h3>
-                        <p class="text-sm mb-2">On prélève la valeur du signal toutes les $T_e$ secondes.</p>
-                        <div class="math-box bg-slate-100 p-3 rounded text-center font-bold">
+                        <h3 class="font-bold text-slate-200 mb-2">Principe</h3>
+                        <p class="text-sm mb-2 text-slate-400">On prélève la valeur du signal toutes les $T_e$ secondes.</p>
+                        <div class="math-box bg-slate-950 border border-slate-800 p-3 rounded text-center font-bold text-slate-200">
                             $$T_e = \frac{1}{f_e}$$
                         </div>
                         <p class="text-xs text-slate-500 mt-2">Où $f_e$ est la fréquence d'échantillonnage.<br>Ex : $f_e = 8 \text{ kHz} \Rightarrow T_e = 0.125 \text{ ms}$.</p>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800 mb-2">Signal échantillonné</h3>
-                        <p class="text-sm mb-2">Mathématiquement, on multiplie le signal par le peigne de Dirac.</p>
-                        <div class="math-box bg-slate-100 p-3 rounded text-center">
+                        <h3 class="font-bold text-slate-200 mb-2">Signal échantillonné</h3>
+                        <p class="text-sm mb-2 text-slate-400">Mathématiquement, on multiplie le signal par le peigne de Dirac.</p>
+                        <div class="math-box bg-slate-950 border border-slate-800 p-3 rounded text-center text-slate-200">
                             $$x_{ech}(t) = x(t) \cdot \psi_{Te}(t)$$
                         </div>
                         <p class="text-xs text-slate-500 mt-2">Le spectre se répète autour des multiples de $f_e$ : $f, f \pm f_e, f \pm 2f_e...$</p>
                     </div>
                 </div>
 
-                <div class="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg shadow-sm">
-                    <h3 class="font-bold text-red-700 text-xl mb-2 flex items-center">
+                <div class="bg-red-950/20 border-l-4 border-red-500 p-5 rounded-r-lg shadow-sm border-y border-r border-red-900/30">
+                    <h3 class="font-bold text-red-400 text-xl mb-2 flex items-center">
                         <i class="fas fa-crown mr-2"></i> LE THÉORÈME DE SHANNON (Tombe 100% du temps)
                     </h3>
-                    <div class="math-box bg-white p-3 text-center rounded text-xl font-bold text-red-600 shadow-sm my-3 border border-red-100">
+                    <div class="math-box bg-slate-950 border border-red-900 p-3 text-center rounded text-xl font-bold text-red-500 shadow-inner my-3">
                         $$f_e > 2 \cdot f_{max}$$
                     </div>
-                    <p class="mb-2 text-red-900">Il faut échantillonner à une fréquence STRICTEMENT supérieure au double de la fréquence maximale contenue dans le signal.</p>
-                    <ul class="list-disc pl-5 text-sm text-red-800">
-                        <li><strong>Si respecté :</strong> On peut reconstruire parfaitement le signal.</li>
-                        <li><strong>Si NON respecté ($f_e < 2f_{max}$) :</strong> Il y a <strong>Repliement de Spectre (Aliasing)</strong>. Les spectres se chevauchent, le signal est détruit.</li>
+                    <p class="mb-2 text-red-300">Il faut échantillonner à une fréquence STRICTEMENT supérieure au double de la fréquence maximale contenue dans le signal.</p>
+                    <ul class="list-disc pl-5 text-sm text-red-200/80">
+                        <li><strong class="text-slate-200">Si respecté :</strong> On peut reconstruire parfaitement le signal.</li>
+                        <li><strong class="text-slate-200">Si NON respecté ($f_e < 2f_{max}$) :</strong> Il y a <strong>Repliement de Spectre (Aliasing)</strong>. Les spectres se chevauchent, le signal est détruit.</li>
                     </ul>
-                    <div class="mt-4 p-3 bg-white bg-opacity-60 rounded text-sm font-semibold">
+                    <div class="mt-4 p-3 bg-slate-900 border border-slate-800 rounded text-sm font-semibold text-slate-300">
                         <strong>Exemple classique (Téléphonie) :</strong> Voix limitée à $f_{max} = 3400 \text{ Hz}$. <br>
-                        Shannon exige : $f_e > 6800 \text{ Hz}$. On choisit le standard <strong>$f_e = 8000 \text{ Hz}$</strong> (8 kHz).
+                        Shannon exige : $f_e > 6800 \text{ Hz}$. On choisit le standard <strong class="text-white">$f_e = 8000 \text{ Hz}$</strong> (8 kHz).
                     </div>
                 </div>
             </section>
 
             <!-- Section 4 -->
-            <section id="quantification" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-stairs mr-2"></i>4. Quantification & Rapport Signal/Bruit</h2>
+            <section id="quantification" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-stairs mr-2 text-indigo-500"></i>4. Quantification & Rapport Signal/Bruit</h2>
                 
                 <p class="mb-4">Après l’échantillonnage, on transforme la tension (continue) en un niveau discret. Si on code sur $n$ bits, on a $2^n$ niveaux possibles.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                        <h3 class="font-bold text-blue-800 mb-2">Le Pas de quantification ($q$)</h3>
-                        <p class="text-sm mb-2">C'est l'écart de tension entre deux niveaux consécutifs.</p>
-                        <div class="math-box bg-white p-2 rounded text-center font-bold text-lg text-blue-900">
+                    <div class="bg-blue-950/20 p-4 rounded-lg border border-blue-900/50">
+                        <h3 class="font-bold text-blue-400 mb-2">Le Pas de quantification ($q$)</h3>
+                        <p class="text-sm mb-2 text-slate-300">C'est l'écart de tension entre deux niveaux consécutifs.</p>
+                        <div class="math-box bg-slate-950 p-2 rounded text-center font-bold text-lg text-blue-300 border border-slate-800">
                             $$q = \frac{PE}{2^n}$$
                         </div>
-                        <p class="text-xs mt-2 text-slate-600">Avec la Pleine Échelle : <strong>$PE = V_{max} - V_{min}$</strong></p>
-                        <p class="text-xs bg-white p-1 mt-1 rounded text-slate-500 border">Ex: PE=10V, 8 bits $\Rightarrow q = \frac{10}{256} = 39\text{ mV}$</p>
+                        <p class="text-xs mt-2 text-slate-400">Avec la Pleine Échelle : <strong>$PE = V_{max} - V_{min}$</strong></p>
+                        <p class="text-xs bg-slate-800 p-1 mt-1 rounded text-slate-400 border border-slate-700">Ex: PE=10V, 8 bits $\Rightarrow q = \frac{10}{256} = 39\text{ mV}$</p>
                     </div>
 
-                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
-                        <h3 class="font-bold text-purple-800 mb-2">Erreur de quantification ($\epsilon$)</h3>
-                        <p class="text-sm mb-2">La différence entre le signal réel et quantifié : $\epsilon(t) = x_q(t) - x(t)$.</p>
-                        <ul class="text-sm space-y-1 mb-2 font-semibold text-purple-900">
+                    <div class="bg-purple-950/20 p-4 rounded-lg border border-purple-900/50">
+                        <h3 class="font-bold text-purple-400 mb-2">Erreur de quantification ($\epsilon$)</h3>
+                        <p class="text-sm mb-2 text-slate-300">La différence entre le signal réel et quantifié : $\epsilon(t) = x_q(t) - x(t)$.</p>
+                        <ul class="text-sm space-y-1 mb-2 font-semibold text-purple-300">
                             <li>L'erreur max est : $\pm \frac{q}{2}$</li>
                         </ul>
-                        <div class="math-box bg-white p-2 rounded text-center">
+                        <div class="math-box bg-slate-950 p-2 rounded text-center text-slate-200 border border-slate-800">
                             $$P_\epsilon = \frac{q^2}{12}$$
                         </div>
-                        <p class="text-xs mt-1 text-slate-600 text-center">(Puissance du bruit de quantification)</p>
+                        <p class="text-xs mt-1 text-slate-500 text-center">(Puissance du bruit de quantification)</p>
                     </div>
                 </div>
 
-                <div class="bg-slate-800 text-white p-5 rounded-lg shadow-md">
-                    <h3 class="font-bold text-lg mb-2 text-yellow-300">Rapport Signal / Bruit de quantification (SNR / $S/N_q$)</h3>
-                    <div class="math-box text-center mb-2">
+                <div class="bg-slate-950 border border-slate-800 p-5 rounded-lg shadow-inner">
+                    <h3 class="font-bold text-lg mb-2 text-yellow-400">Rapport Signal / Bruit de quantification (SNR / $S/N_q$)</h3>
+                    <div class="math-box text-center mb-2 text-slate-200">
                         $$S/N_q = 10 \log\left(\frac{P_s}{P_\epsilon}\right)$$
                     </div>
-                    <p class="text-sm mb-2">Formule développée (souvent utile) :</p>
-                    <div class="math-box text-center text-yellow-300 font-bold bg-slate-700 p-2 rounded border border-slate-600">
+                    <p class="text-sm mb-2 text-slate-400">Formule développée (souvent utile) :</p>
+                    <div class="math-box text-center text-yellow-300 font-bold bg-slate-900 p-2 rounded border border-slate-700">
                         $$S/N \approx 6n + 1.76 + 20 \log\left(\frac{V_{pp}}{PE}\right)$$
                     </div>
-                    <p class="text-center mt-3 text-sm font-semibold bg-white text-slate-900 p-2 rounded">
+                    <p class="text-center mt-3 text-sm font-semibold bg-slate-800 border border-slate-700 text-slate-200 p-2 rounded">
                         🚀 Règle d'or : Ajouter 1 bit de codage augmente le SNR de 6 dB !
                     </p>
                 </div>
             </section>
 
             <!-- Section 5 -->
-            <section id="chaine" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-link mr-2"></i>5. Les Composants de la Chaîne (CAN, CNA & Filtres)</h2>
+            <section id="chaine" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-link mr-2 text-indigo-500"></i>5. Les Composants de la Chaîne (CAN, CNA & Filtres)</h2>
                 
                 <p class="mb-4">Voici l'ordre d'action détaillé d'une chaîne de numérisation complète (pour les questions de cours) :</p>
 
                 <div class="space-y-4">
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm">1</div>
+                        <div class="flex-shrink-0 bg-blue-900 text-blue-200 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm border border-blue-700">1</div>
                         <div>
-                            <h4 class="font-bold text-slate-800">Filtre anti-repliement (avant échantillonnage)</h4>
-                            <p class="text-sm text-slate-600">C'est un <strong>filtre passe-bas</strong>. Son but est de supprimer toutes les fréquences supérieures à $f_e/2$ pour éviter l'aliasing (respecter Shannon).</p>
+                            <h4 class="font-bold text-slate-200">Filtre anti-repliement (avant échantillonnage)</h4>
+                            <p class="text-sm text-slate-400">C'est un <strong class="text-slate-300">filtre passe-bas</strong>. Son but est de supprimer toutes les fréquences supérieures à $f_e/2$ pour éviter l'aliasing (respecter Shannon).</p>
                         </div>
                     </div>
                     
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm">2</div>
+                        <div class="flex-shrink-0 bg-blue-900 text-blue-200 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm border border-blue-700">2</div>
                         <div>
-                            <h4 class="font-bold text-slate-800">CAN (Convertisseur Analogique Numérique) / ADC</h4>
-                            <p class="text-sm text-slate-600">Entrée : tension continue. Sortie : Nombre numérique sur $n$ bits. Il réalise l'échantillonnage, la quantification et le codage.<br>
-                            <span class="bg-slate-100 px-2 py-1 rounded inline-block mt-1 font-mono text-xs">Relation CAN : $N = \text{arrondi}(\frac{V_e}{q})$</span></p>
+                            <h4 class="font-bold text-slate-200">CAN (Convertisseur Analogique Numérique) / ADC</h4>
+                            <p class="text-sm text-slate-400">Entrée : tension continue. Sortie : Nombre numérique sur $n$ bits. Il réalise l'échantillonnage, la quantification et le codage.<br>
+                            <span class="bg-slate-800 border border-slate-700 px-2 py-1 rounded inline-block mt-1 font-mono text-xs text-slate-300">Relation CAN : $N = \text{arrondi}(\frac{V_e}{q})$</span></p>
                         </div>
                     </div>
 
-                    <div class="w-full flex justify-center py-2 text-slate-300"><i class="fas fa-arrow-down fa-2x"></i><span class="ml-2 mt-1 text-sm">(Transmission numérique)</span></div>
+                    <div class="w-full flex justify-center py-2 text-slate-600"><i class="fas fa-arrow-down fa-2x"></i><span class="ml-2 mt-1 text-sm">(Transmission numérique)</span></div>
 
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm">3</div>
+                        <div class="flex-shrink-0 bg-emerald-900 text-emerald-200 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm border border-emerald-700">3</div>
                         <div>
-                            <h4 class="font-bold text-slate-800">CNA (Convertisseur Numérique Analogique) / DAC</h4>
-                            <p class="text-sm text-slate-600">Fait l'inverse du CAN. Convertit le mot numérique $N$ en tension analogique discrète : <span class="font-mono bg-slate-100 px-1 rounded">$V = q \cdot N$</span>.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm">4</div>
-                        <div>
-                            <h4 class="font-bold text-slate-800">Bloqueur (Sample and Hold)</h4>
-                            <p class="text-sm text-slate-600">Souvent intégré au CNA. Il maintient la tension de l'échantillon stable jusqu'au prochain échantillon (transforme les impulsions de Dirac en signal en "escalier").</p>
+                            <h4 class="font-bold text-slate-200">CNA (Convertisseur Numérique Analogique) / DAC</h4>
+                            <p class="text-sm text-slate-400">Fait l'inverse du CAN. Convertit le mot numérique $N$ en tension analogique discrète : <span class="font-mono bg-slate-800 border border-slate-700 px-1 rounded text-slate-300">$V = q \cdot N$</span>.</p>
                         </div>
                     </div>
 
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm">5</div>
+                        <div class="flex-shrink-0 bg-emerald-900 text-emerald-200 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm border border-emerald-700">4</div>
                         <div>
-                            <h4 class="font-bold text-slate-800">Filtre de lissage</h4>
-                            <p class="text-sm text-slate-600">C'est un <strong>filtre passe-bas</strong> placé à la toute fin. Il lisse les "escaliers" du bloqueur en supprimant les fréquences $> f_e/2$ pour reconstruire le signal analogique originel parfait.</p>
+                            <h4 class="font-bold text-slate-200">Bloqueur (Sample and Hold)</h4>
+                            <p class="text-sm text-slate-400">Souvent intégré au CNA. Il maintient la tension de l'échantillon stable jusqu'au prochain échantillon (transforme les impulsions de Dirac en signal en "escalier").</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-emerald-900 text-emerald-200 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 mt-1 shadow-sm border border-emerald-700">5</div>
+                        <div>
+                            <h4 class="font-bold text-slate-200">Filtre de lissage</h4>
+                            <p class="text-sm text-slate-400">C'est un <strong class="text-slate-300">filtre passe-bas</strong> placé à la toute fin. Il lisse les "escaliers" du bloqueur en supprimant les fréquences $> f_e/2$ pour reconstruire le signal analogique originel parfait.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Section 6 -->
-            <section id="codage" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-binary mr-2"></i>6. Codage & Débit Numérique</h2>
+            <section id="codage" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-binary mr-2 text-indigo-500"></i>6. Codage & Débit Numérique</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <h3 class="font-bold text-slate-800 mb-3 border-l-4 border-indigo-500 pl-2">Les Types de Codages Binaires</h3>
+                        <h3 class="font-bold text-slate-200 mb-3 border-l-4 border-indigo-500 pl-2">Les Types de Codages Binaires</h3>
                         <ul class="space-y-3 text-sm">
-                            <li class="bg-slate-50 p-3 rounded border">
-                                <strong class="text-indigo-900">1. Bit de signe (Valeur Absolue + Signe)</strong><br>
-                                Le MSB (bit de poids fort) donne le signe. <br><code class="bg-slate-200 px-1 rounded text-red-600 font-bold">0 = négatif</code>, <code class="bg-slate-200 px-1 rounded text-green-600 font-bold">1 = positif</code> (ou inversement selon convention, à vérifier avec le prof).
+                            <li class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <strong class="text-indigo-300">1. Bit de signe (Valeur Absolue + Signe)</strong><br>
+                                Le MSB (bit de poids fort) donne le signe. <br><code class="bg-slate-950 border border-slate-700 px-1 rounded text-red-400 font-bold">0 = négatif</code>, <code class="bg-slate-950 border border-slate-700 px-1 rounded text-emerald-400 font-bold">1 = positif</code> (ou inversement selon convention, à vérifier avec le prof).
                             </li>
-                            <li class="bg-slate-50 p-3 rounded border">
-                                <strong class="text-indigo-900">2. Binaire décalé</strong><br>
+                            <li class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <strong class="text-indigo-300">2. Binaire décalé</strong><br>
                                 On ajoute un offset pour que tout soit positif : $N' = N + 2^{n-1}$.
                             </li>
-                            <li class="bg-slate-50 p-3 rounded border">
-                                <strong class="text-indigo-900">3. Complément à 2</strong><br>
+                            <li class="bg-slate-800 p-3 rounded border border-slate-700">
+                                <strong class="text-indigo-300">3. Complément à 2</strong><br>
                                 Si positif : binaire normal. Si négatif : Inverser tous les bits et faire $+1$. L'intervalle couvert est $[-2^{n-1}, 2^{n-1}-1]$. Facilite l'arithmétique dans les processeurs.
                             </li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="font-bold text-slate-800 mb-3 border-l-4 border-emerald-500 pl-2">Débit Numérique ($D$)</h3>
-                        <p class="text-sm mb-3">Chaque échantillon est codé sur $n$ bits. On a $f_e$ échantillons par seconde. Le débit est donc :</p>
+                        <h3 class="font-bold text-slate-200 mb-3 border-l-4 border-emerald-500 pl-2">Débit Numérique ($D$)</h3>
+                        <p class="text-sm mb-3 text-slate-400">Chaque échantillon est codé sur $n$ bits. On a $f_e$ échantillons par seconde. Le débit est donc :</p>
                         
-                        <div class="math-box bg-emerald-50 p-4 border border-emerald-200 rounded text-center text-xl font-bold text-emerald-800 mb-4 shadow-sm">
+                        <div class="math-box bg-emerald-950/20 p-4 border border-emerald-900/50 rounded text-center text-xl font-bold text-emerald-400 mb-4 shadow-sm">
                             $$D = n \times f_e$$
                         </div>
                         
-                        <div class="bg-slate-800 text-white p-5 rounded-lg text-sm shadow">
-                            <strong class="text-yellow-300"><i class="fas fa-bolt mr-2"></i>Exo Type (Très Fréquent) :</strong><br>
+                        <div class="bg-slate-950 text-slate-300 p-5 rounded-lg border border-slate-800 text-sm shadow">
+                            <strong class="text-yellow-400"><i class="fas fa-bolt mr-2"></i>Exo Type (Très Fréquent) :</strong><br>
                             Calculer le débit du standard de téléphonie classique PCM :<br>
                             $n = 8$ bits<br>
                             $f_e = 8000$ Hz (8 kHz)<br>
-                            <span class="text-white block mt-2 pt-2 border-t border-slate-600 font-bold text-lg">
+                            <span class="text-white block mt-2 pt-2 border-t border-slate-700 font-bold text-lg">
                                 $D = 8 \times 8000 = 64 \ 000 \text{ bits/s}$ (64 kbps)
                             </span>
                         </div>
@@ -364,76 +368,75 @@
             </section>
 
             <!-- Section 7 -->
-            <section id="codecs" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 scroll-mt-8 border-t-4 border-t-pink-500">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4 border-b pb-2"><i class="fas fa-compress-arrows-alt mr-2"></i>7. Codecs, Standards Audio & Exo TD</h2>
+            <section id="codecs" class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 p-8 mb-8 scroll-mt-8 border-t-4 border-t-pink-600">
+                <h2 class="text-2xl font-bold text-indigo-400 mb-4 border-b border-slate-800 pb-2"><i class="fas fa-compress-arrows-alt mr-2 text-pink-500"></i>7. Codecs, Standards Audio & Exo TD</h2>
                 
                 <div class="mb-6">
-                    <h3 class="font-bold text-slate-800 text-lg mb-2">Qu'est-ce qu'un Codec ?</h3>
-                    <p class="text-sm"><strong>Co</strong>deur / <strong>Déc</strong>odeur. Il regroupe toute la chaîne (Filtres, Échantillonnage, CAN, Compression... et le sens inverse). Son but principal est de **réduire le débit ($D$)** de transmission. 
+                    <h3 class="font-bold text-slate-200 text-lg mb-2">Qu'est-ce qu'un Codec ?</h3>
+                    <p class="text-sm text-slate-400"><strong>Co</strong>deur / <strong>Déc</strong>odeur. Il regroupe toute la chaîne (Filtres, Échantillonnage, CAN, Compression... et le sens inverse). Son but principal est de **réduire le débit ($D$)** de transmission. 
                     </p>
-                    <p class="text-sm mt-2"><strong class="text-indigo-600">PCM (MIC)</strong> : Codage basique (valeur absolue). <strong class="text-indigo-600">ADPCM / DPCM</strong> : Codage prédictif (on code uniquement la différence entre l'échantillon actuel et le précédent, ce qui prend moins de bits !).</p>
+                    <p class="text-sm mt-2 text-slate-400"><strong class="text-indigo-400">PCM (MIC)</strong> : Codage basique (valeur absolue). <strong class="text-indigo-400">ADPCM / DPCM</strong> : Codage prédictif (on code uniquement la différence entre l'échantillon actuel et le précédent, ce qui prend moins de bits !).</p>
                 </div>
 
-                <!-- NEW: Standards Table from the Course -->
                 <div class="mb-6">
-                    <h3 class="font-bold text-slate-800 mb-3 border-l-4 border-pink-500 pl-2">Les Standards Audio (à connaître pour le QCM)</h3>
-                    <div class="overflow-x-auto rounded border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-slate-200 mb-3 border-l-4 border-pink-500 pl-2">Les Standards Audio (à connaître pour le QCM)</h3>
+                    <div class="overflow-x-auto rounded border border-slate-700 shadow-sm">
                         <table class="w-full text-sm text-left border-collapse">
-                            <thead class="bg-slate-100 text-slate-800">
-                                <tr><th class="p-3 border-b border-slate-200">Standard</th><th class="p-3 border-b border-slate-200">Technique</th><th class="p-3 border-b border-slate-200">Débit</th><th class="p-3 border-b border-slate-200">Usage</th></tr>
+                            <thead class="bg-slate-950 text-slate-300">
+                                <tr><th class="p-3 border-b border-slate-700">Standard</th><th class="p-3 border-b border-slate-700">Technique</th><th class="p-3 border-b border-slate-700">Débit</th><th class="p-3 border-b border-slate-700">Usage</th></tr>
                             </thead>
-                            <tbody>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-3 border-b border-slate-200 font-bold text-indigo-700">G.711</td>
-                                    <td class="p-3 border-b border-slate-200">PCM (Lois A / µ)</td>
-                                    <td class="p-3 border-b border-slate-200 font-mono">64 kbps</td>
-                                    <td class="p-3 border-b border-slate-200 text-slate-500">Téléphonie filaire classique</td>
+                            <tbody class="text-slate-300">
+                                <tr class="hover:bg-slate-800 transition">
+                                    <td class="p-3 border-b border-slate-700 font-bold text-indigo-400">G.711</td>
+                                    <td class="p-3 border-b border-slate-700">PCM (Lois A / µ)</td>
+                                    <td class="p-3 border-b border-slate-700 font-mono text-emerald-400">64 kbps</td>
+                                    <td class="p-3 border-b border-slate-700 text-slate-500">Téléphonie filaire classique</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-3 border-b border-slate-200 font-bold text-indigo-700">G.722</td>
-                                    <td class="p-3 border-b border-slate-200">ADPCM</td>
-                                    <td class="p-3 border-b border-slate-200 font-mono">48/56/64 kbps</td>
-                                    <td class="p-3 border-b border-slate-200 text-slate-500">Voix haute qualité (HD Voice)</td>
+                                <tr class="hover:bg-slate-800 transition">
+                                    <td class="p-3 border-b border-slate-700 font-bold text-indigo-400">G.722</td>
+                                    <td class="p-3 border-b border-slate-700">ADPCM</td>
+                                    <td class="p-3 border-b border-slate-700 font-mono text-emerald-400">48/56/64 kbps</td>
+                                    <td class="p-3 border-b border-slate-700 text-slate-500">Voix haute qualité (HD Voice)</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-3 border-b border-slate-200 font-bold text-indigo-700">G.726</td>
-                                    <td class="p-3 border-b border-slate-200">ADPCM</td>
-                                    <td class="p-3 border-b border-slate-200 font-mono">16 à 40 kbps</td>
-                                    <td class="p-3 border-b border-slate-200 text-slate-500">Liaisons téléphoniques internationales</td>
+                                <tr class="hover:bg-slate-800 transition">
+                                    <td class="p-3 border-b border-slate-700 font-bold text-indigo-400">G.726</td>
+                                    <td class="p-3 border-b border-slate-700">ADPCM</td>
+                                    <td class="p-3 border-b border-slate-700 font-mono text-emerald-400">16 à 40 kbps</td>
+                                    <td class="p-3 border-b border-slate-700 text-slate-500">Liaisons téléphoniques internationales</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-3 border-b border-slate-200 font-bold text-indigo-700">G.729</td>
-                                    <td class="p-3 border-b border-slate-200">CS-ACELP</td>
-                                    <td class="p-3 border-b border-slate-200 font-mono">8 kbps</td>
-                                    <td class="p-3 border-b border-slate-200 text-slate-500">VoIP (faible bande passante)</td>
+                                <tr class="hover:bg-slate-800 transition">
+                                    <td class="p-3 border-b border-slate-700 font-bold text-indigo-400">G.729</td>
+                                    <td class="p-3 border-b border-slate-700">CS-ACELP</td>
+                                    <td class="p-3 border-b border-slate-700 font-mono text-emerald-400">8 kbps</td>
+                                    <td class="p-3 border-b border-slate-700 text-slate-500">VoIP (faible bande passante)</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="p-3 border-b border-slate-200 font-bold text-indigo-700">GSM 6.1</td>
-                                    <td class="p-3 border-b border-slate-200">RPE-LTP</td>
-                                    <td class="p-3 border-b border-slate-200 font-mono">13 kbps</td>
-                                    <td class="p-3 border-b border-slate-200 text-slate-500">Téléphonie Mobile (2G)</td>
+                                <tr class="hover:bg-slate-800 transition">
+                                    <td class="p-3 border-b border-slate-700 font-bold text-indigo-400">GSM 6.1</td>
+                                    <td class="p-3 border-b border-slate-700">RPE-LTP</td>
+                                    <td class="p-3 border-b border-slate-700 font-mono text-emerald-400">13 kbps</td>
+                                    <td class="p-3 border-b border-slate-700 text-slate-500">Téléphonie Mobile (2G)</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="bg-pink-50 border border-pink-200 rounded-lg p-5">
-                    <h3 class="font-bold text-pink-800 text-lg mb-2"><i class="fas fa-chart-line mr-2"></i>La Quantification Non-Uniforme (Exo 2 p12 du TD)</h3>
-                    <p class="text-sm mb-3">Les <strong>lois de compression A et $\mu$</strong> utilisent des pas de quantification variables :</p>
-                    <ul class="list-disc pl-5 text-sm mb-4">
-                        <li>De <strong>petits pas</strong> de quantification pour les petits signaux (la voix humaine est souvent de faible amplitude).</li>
-                        <li>De <strong>grands pas</strong> de quantification pour les grands signaux.</li>
+                <div class="bg-pink-950/20 border border-pink-900/50 rounded-lg p-5">
+                    <h3 class="font-bold text-pink-400 text-lg mb-2"><i class="fas fa-chart-line mr-2"></i>La Quantification Non-Uniforme (Exo 2 p12 du TD)</h3>
+                    <p class="text-sm mb-3 text-slate-300">Les <strong>lois de compression A et $\mu$</strong> utilisent des pas de quantification variables :</p>
+                    <ul class="list-disc pl-5 text-sm mb-4 text-slate-400">
+                        <li>De <strong class="text-slate-200">petits pas</strong> de quantification pour les petits signaux (la voix humaine est souvent de faible amplitude).</li>
+                        <li>De <strong class="text-slate-200">grands pas</strong> de quantification pour les grands signaux.</li>
                     </ul>
-                    <p class="text-sm font-bold text-pink-900 mb-4"><i class="fas fa-check-circle text-green-600"></i> But final : Améliorer significativement le Rapport Signal/Bruit (SNR) pour les signaux de faibles amplitudes.</p>
+                    <p class="text-sm font-bold text-pink-300 mb-4"><i class="fas fa-check-circle text-emerald-500 mr-1"></i> But final : Améliorer significativement le Rapport Signal/Bruit (SNR) pour les signaux de faibles amplitudes.</p>
 
-                    <div class="bg-white p-4 rounded shadow-sm">
-                        <h4 class="font-bold border-b pb-1 mb-2">Méthodologie de l'exercice :</h4>
-                        <ol class="list-decimal pl-5 text-sm space-y-3 text-slate-700">
+                    <div class="bg-slate-800 border border-slate-700 p-4 rounded shadow-sm">
+                        <h4 class="font-bold border-b border-slate-700 pb-1 mb-2 text-slate-200">Méthodologie de l'exercice :</h4>
+                        <ol class="list-decimal pl-5 text-sm space-y-3 text-slate-300">
                             <li>
                                 <strong>Normalisation :</strong> On ramène la tension entre 0 et 1 (ou -1 et 1).<br>
                                 $x = \frac{V_{in}}{V_{max}}$.<br>
-                                <em>Ex: $V_{in} = 0.14V, V_{max} = 5V \Rightarrow x = 0.028$</em>
+                                <em class="text-slate-500">Ex: $V_{in} = 0.14V, V_{max} = 5V \Rightarrow x = 0.028$</em>
                             </li>
                             <li>
                                 <strong>Compression (Segment ABC) :</strong> On regarde le graphique (Loi A ou loi µ). La valeur $x$ tombe dans un segment spécifique (courbe log). Le codec lui attribue 3 bits ($ABC$).
@@ -445,7 +448,7 @@
                                 <strong>Signe (S) :</strong> 1 bit. Ex: Si $V_{in}$ est positif $\Rightarrow S=1$.
                             </li>
                             <li>
-                                <strong>Résultat final :</strong> Le mot binaire (8 bits) se construit : <code>S ABC WXYZ</code>.
+                                <strong>Résultat final :</strong> Le mot binaire (8 bits) se construit : <code class="bg-slate-900 px-1 rounded text-indigo-300 border border-slate-700">S ABC WXYZ</code>.
                             </li>
                         </ol>
                     </div>
@@ -453,66 +456,66 @@
             </section>
 
             <!-- Section 8: Formules -->
-            <section id="formules" class="bg-indigo-900 rounded-2xl shadow-xl border border-indigo-700 p-8 mb-8 text-white scroll-mt-8">
-                <h2 class="text-3xl font-bold text-indigo-100 mb-6 flex items-center justify-center border-b border-indigo-700 pb-4">
-                    <i class="fas fa-calculator mr-3 text-yellow-400"></i> Les 10 Formules d'Or
+            <section id="formules" class="bg-slate-950 rounded-2xl shadow-xl border border-slate-800 p-8 mb-8 text-slate-200 scroll-mt-8">
+                <h2 class="text-3xl font-bold text-slate-100 mb-6 flex items-center justify-center border-b border-slate-800 pb-4">
+                    <i class="fas fa-calculator mr-3 text-yellow-500"></i> Les 10 Formules d'Or
                 </h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-sm">
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">1</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">1</span>
                         <div><div class="math-box">$$T_e = \frac{1}{f_e}$$</div></div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">2</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">2</span>
                         <div><div class="math-box">$$x_{ech}(t) = x(t) \cdot \psi_{Te}(t)$$</div></div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow border-2 border-yellow-500 flex items-center relative overflow-hidden">
-                        <div class="absolute right-0 top-0 text-yellow-500 opacity-20 text-4xl"><i class="fas fa-star"></i></div>
-                        <span class="bg-yellow-500 text-indigo-900 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold z-10">3</span>
+                    <div class="bg-slate-900 p-4 rounded shadow border border-yellow-600/50 flex items-center relative overflow-hidden bg-gradient-to-r from-slate-900 to-yellow-950/20">
+                        <div class="absolute right-0 top-0 text-yellow-500/10 text-4xl"><i class="fas fa-star"></i></div>
+                        <span class="bg-yellow-600 text-slate-950 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold z-10">3</span>
                         <div class="z-10">
-                            <div class="text-xs text-yellow-300 mb-1 font-bold uppercase tracking-wider">Théorème de Shannon</div>
-                            <div class="math-box text-xl text-yellow-400 font-bold">$$f_e > 2f_{max}$$</div>
+                            <div class="text-xs text-yellow-400 mb-1 font-bold uppercase tracking-wider">Théorème de Shannon</div>
+                            <div class="math-box text-xl text-yellow-500 font-bold">$$f_e > 2f_{max}$$</div>
                         </div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">4</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">4</span>
                         <div><div class="math-box">$$q = \frac{PE}{2^n}$$</div></div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">5</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">5</span>
                         <div><div class="math-box">$$PE = V_{max} - V_{min}$$</div></div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">6</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">6</span>
                         <div><div class="math-box">$$\epsilon(t) = x_q(t) - x(t)$$</div></div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">7</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">7</span>
                         <div>
-                            <div class="text-xs text-indigo-200 mb-1">Puissance bruit de quantification</div>
+                            <div class="text-xs text-slate-400 mb-1">Puissance bruit quantification</div>
                             <div class="math-box text-lg">$$P_\epsilon = \frac{q^2}{12}$$</div>
                         </div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">8</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">8</span>
                         <div>
-                            <div class="text-xs text-indigo-200 mb-1">SNR en décibels</div>
+                            <div class="text-xs text-slate-400 mb-1">SNR en décibels</div>
                             <div class="math-box">$$SNR_{dB} = 10 \log\left(\frac{P_s}{P_\epsilon}\right)$$</div>
                         </div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow border-2 border-emerald-500 flex items-center relative overflow-hidden">
-                        <div class="absolute right-0 top-0 text-emerald-500 opacity-20 text-4xl"><i class="fas fa-network-wired"></i></div>
-                        <span class="bg-emerald-500 text-indigo-900 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold z-10">9</span>
+                    <div class="bg-slate-900 p-4 rounded shadow border border-emerald-600/50 flex items-center relative overflow-hidden bg-gradient-to-r from-slate-900 to-emerald-950/20">
+                        <div class="absolute right-0 top-0 text-emerald-500/10 text-4xl"><i class="fas fa-network-wired"></i></div>
+                        <span class="bg-emerald-600 text-slate-950 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold z-10">9</span>
                         <div class="z-10">
-                            <div class="text-xs text-emerald-300 mb-1 font-bold uppercase tracking-wider">Débit numérique</div>
+                            <div class="text-xs text-emerald-400 mb-1 font-bold uppercase tracking-wider">Débit numérique</div>
                             <div class="math-box text-xl text-emerald-400 font-bold">$$D = n \times f_e$$</div>
                         </div>
                     </div>
-                    <div class="bg-indigo-800 p-4 rounded shadow flex items-center border border-indigo-600 hover:bg-indigo-700 transition">
-                        <span class="bg-indigo-900 text-indigo-300 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold">10</span>
+                    <div class="bg-slate-900 p-4 rounded shadow flex items-center border border-slate-800 hover:bg-slate-800 transition">
+                        <span class="bg-slate-950 text-indigo-400 w-8 h-8 rounded-full flex justify-center items-center mr-3 font-bold border border-slate-700">10</span>
                         <div>
-                            <div class="text-xs text-indigo-200 mb-1">Sortie du CNA (Analogique)</div>
+                            <div class="text-xs text-slate-400 mb-1">Sortie du CNA (Analogique)</div>
                             <div class="math-box text-lg">$$V = q \cdot N$$</div>
                         </div>
                     </div>
@@ -520,34 +523,34 @@
             </section>
 
             <!-- Section 9: Pièges -->
-            <section id="pieges" class="bg-red-50 rounded-2xl shadow-sm border-2 border-red-200 p-8 mb-8 scroll-mt-8 relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 text-red-100 opacity-50 text-9xl"><i class="fas fa-bomb"></i></div>
-                <h2 class="text-2xl font-bold text-red-700 mb-6 border-b border-red-200 pb-2 relative z-10"><i class="fas fa-skull-crossbones mr-2"></i>Attention aux Pièges du Prof !</h2>
+            <section id="pieges" class="bg-red-950/20 rounded-2xl shadow-lg border border-red-900/50 p-8 mb-8 scroll-mt-8 relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-red-900/30 text-9xl"><i class="fas fa-bomb"></i></div>
+                <h2 class="text-2xl font-bold text-red-400 mb-6 border-b border-red-900/50 pb-2 relative z-10"><i class="fas fa-skull-crossbones mr-2"></i>Attention aux Pièges du Prof !</h2>
                 
                 <div class="space-y-4 relative z-10">
-                    <div class="bg-white p-4 rounded shadow-sm border-l-4 border-red-500">
-                        <h4 class="font-bold text-slate-800">❌ Erreur : $f_e > f_{max}$ pour Shannon</h4>
-                        <p class="text-sm text-slate-600">C'est faux ! La condition stricte est <strong class="text-red-600">$f_e > 2 \cdot f_{max}$</strong>. N'oublie pas le "2" ! L'égalité ne suffit généralement pas.</p>
+                    <div class="bg-slate-900 p-4 rounded shadow-sm border-l-4 border-red-600 border border-slate-800">
+                        <h4 class="font-bold text-slate-200">❌ Erreur : $f_e > f_{max}$ pour Shannon</h4>
+                        <p class="text-sm text-slate-400">C'est faux ! La condition stricte est <strong class="text-red-400">$f_e > 2 \cdot f_{max}$</strong>. N'oublie pas le "2" ! L'égalité ne suffit généralement pas.</p>
                     </div>
-                    <div class="bg-white p-4 rounded shadow-sm border-l-4 border-red-500">
-                        <h4 class="font-bold text-slate-800">❌ Erreur : Confondre $f_e$ et $T_e$</h4>
-                        <p class="text-sm text-slate-600">L'un est en Hertz (fréquence = nb d'échantillons par seconde), l'autre en Secondes (Période = temps entre deux échantillons). <strong class="text-red-600">$T_e = 1/f_e$</strong>.</p>
+                    <div class="bg-slate-900 p-4 rounded shadow-sm border-l-4 border-red-600 border border-slate-800">
+                        <h4 class="font-bold text-slate-200">❌ Erreur : Confondre $f_e$ et $T_e$</h4>
+                        <p class="text-sm text-slate-400">L'un est en Hertz (fréquence = nb d'échantillons par seconde), l'autre en Secondes (Période = temps entre deux échantillons). <strong class="text-red-400">$T_e = 1/f_e$</strong>.</p>
                     </div>
-                    <div class="bg-white p-4 rounded shadow-sm border-l-4 border-red-500">
-                        <h4 class="font-bold text-slate-800">❌ Erreur : Pas de quantification $q = PE / n$</h4>
-                        <p class="text-sm text-slate-600">Grave erreur de division par le nombre de bits ! Le nombre de <em>niveaux</em> (marches de l'escalier) est de $2^n$. Donc <strong class="text-red-600">$q = PE / 2^n$</strong>.</p>
+                    <div class="bg-slate-900 p-4 rounded shadow-sm border-l-4 border-red-600 border border-slate-800">
+                        <h4 class="font-bold text-slate-200">❌ Erreur : Pas de quantification $q = PE / n$</h4>
+                        <p class="text-sm text-slate-400">Grave erreur de division par le nombre de bits ! Le nombre de <em>niveaux</em> (marches de l'escalier) est de $2^n$. Donc <strong class="text-red-400">$q = PE / 2^n$</strong>.</p>
                     </div>
-                    <div class="bg-white p-4 rounded shadow-sm border-l-4 border-red-500">
-                        <h4 class="font-bold text-slate-800">❌ Erreur : Oublier le $n$ dans le débit</h4>
-                        <p class="text-sm text-slate-600">Certains écrivent $D = f_e$. C'est faux, on transmet $n$ bits pour CHAQUE échantillon. Donc <strong class="text-red-600">$D = n \times f_e$</strong>.</p>
+                    <div class="bg-slate-900 p-4 rounded shadow-sm border-l-4 border-red-600 border border-slate-800">
+                        <h4 class="font-bold text-slate-200">❌ Erreur : Oublier le $n$ dans le débit</h4>
+                        <p class="text-sm text-slate-400">Certains écrivent $D = f_e$. C'est faux, on transmet $n$ bits pour CHAQUE échantillon. Donc <strong class="text-red-400">$D = n \times f_e$</strong>.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Section 10: Flashcards -->
-            <section id="flashcards" class="bg-slate-100 rounded-2xl shadow-inner border border-slate-200 p-8 mb-8 scroll-mt-8">
-                <h2 class="text-2xl font-bold text-slate-800 mb-2 text-center"><i class="fas fa-layer-group mr-2 text-indigo-500"></i>Entraînement Express (20 Cartes)</h2>
-                <p class="text-center text-slate-500 text-sm mb-8">Clique sur une carte pour voir la réponse. Répète jusqu'à tout mémoriser !</p>
+            <section id="flashcards" class="bg-slate-950 rounded-2xl shadow-inner border border-slate-800 p-8 mb-8 scroll-mt-8">
+                <h2 class="text-2xl font-bold text-slate-200 mb-2 text-center"><i class="fas fa-layer-group mr-2 text-indigo-500"></i>Entraînement Express (20 Cartes)</h2>
+                <p class="text-center text-slate-400 text-sm mb-8">Clique sur une carte pour voir la réponse. Répète jusqu'à tout mémoriser !</p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="flashcards-grid">
                     <!-- Cards injected via JS -->
@@ -559,7 +562,7 @@
 
     <!-- Scripts for interactivity -->
     <script>
-        // Data for Flashcards (EXPANDED TO 20)
+        // Data for Flashcards
         const qaData = [
             { q: "Que signifie ADC (CAN) ?", a: "Analog to Digital Converter (Convertisseur Analogique Numérique)." },
             { q: "Que signifie DAC (CNA) ?", a: "Digital to Analog Converter (Convertisseur Numérique Analogique)." },
@@ -573,8 +576,6 @@
             { q: "Qu'est-ce qu'un Codec ?", a: "Codeur/Décodeur. Système convertissant Analogique ↔ Numérique, souvent avec de la compression." },
             { q: "Intérêt de la quantification non-uniforme ?", a: "Utilise des petits pas pour les petits signaux = Améliore le Rapport Signal/Bruit (SNR) pour les signaux faibles." },
             { q: "Combien de dB on gagne par bit supp. ?", a: "+6 dB de SNR pour chaque bit ajouté à la quantification." },
-            
-            // NEW FLASHCARDS
             { q: "Quelle est l'erreur MAXIMALE de quantification ?", a: "$\\pm \\frac{q}{2}$ (la moitié d'un pas maximum de différence avec la valeur réelle)." },
             { q: "Que sont les Lois A et $\\mu$ ?", a: "Ce sont des lois de compression non-uniformes utilisées en téléphonie pour favoriser les petits signaux." },
             { q: "Quelles sont les fréquences issues du signal $m(t) = \\cos(2000t) \\times \\cos(3000t)$ ?", a: "La somme (5000 Hz) et la différence (1000 Hz) des fréquences initiales." },
@@ -585,22 +586,22 @@
             { q: "Où se trouve le bit de signe en codage binaire 'Signe + VA' ?", a: "Dans le MSB (Most Significant Bit / le bit de poids fort tout à gauche)." }
         ];
 
-        // Render Flashcards
+        // Render Flashcards (Mise à jour pour thème sombre)
         const flashcardsGrid = document.getElementById('flashcards-grid');
         
         qaData.forEach((item, index) => {
             const cardHTML = `
                 <div class="flashcard-container h-48 w-full group">
-                    <div class="flashcard relative w-full h-full shadow-md rounded-xl" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard relative w-full h-full shadow-lg rounded-xl" onclick="this.classList.toggle('flipped')">
                         <!-- Front -->
-                        <div class="flashcard-face flashcard-front absolute w-full h-full bg-white text-indigo-900 border-2 border-indigo-100 rounded-xl flex flex-col items-center justify-center p-3 text-center transition hover:border-indigo-300">
-                            <i class="fas fa-question-circle text-2xl text-indigo-300 mb-2"></i>
+                        <div class="flashcard-face flashcard-front absolute w-full h-full bg-slate-800 text-slate-200 border-2 border-slate-700 rounded-xl flex flex-col items-center justify-center p-3 text-center transition hover:border-indigo-500 hover:shadow-indigo-900/20">
+                            <i class="fas fa-question-circle text-2xl text-indigo-400 mb-2"></i>
                             <h3 class="font-bold text-sm leading-tight">${item.q}</h3>
-                            <span class="absolute bottom-2 text-[10px] text-slate-400 uppercase tracking-wider">Toucher pour voir</span>
+                            <span class="absolute bottom-2 text-[10px] text-slate-500 uppercase tracking-wider">Toucher pour voir</span>
                         </div>
                         <!-- Back -->
-                        <div class="flashcard-face flashcard-back absolute w-full h-full bg-indigo-600 text-white rounded-xl flex flex-col items-center justify-center p-3 text-center shadow-lg border-2 border-indigo-700">
-                            <i class="fas fa-lightbulb text-xl text-yellow-300 mb-2"></i>
+                        <div class="flashcard-face flashcard-back absolute w-full h-full bg-indigo-900 text-slate-100 rounded-xl flex flex-col items-center justify-center p-3 text-center shadow-lg border-2 border-indigo-700">
+                            <i class="fas fa-lightbulb text-xl text-yellow-400 mb-2"></i>
                             <div class="text-sm font-medium leading-tight">${item.a}</div>
                         </div>
                     </div>
@@ -658,9 +659,9 @@
             });
 
             navLinks.forEach(link => {
-                link.classList.remove('bg-indigo-800', 'font-bold');
+                link.classList.remove('bg-slate-800', 'text-indigo-300', 'font-bold');
                 if (link.getAttribute('href').includes(current) && current !== '') {
-                    link.classList.add('bg-indigo-800', 'font-bold');
+                    link.classList.add('bg-slate-800', 'text-indigo-300', 'font-bold');
                 }
             });
         });
